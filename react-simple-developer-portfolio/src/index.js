@@ -34,6 +34,38 @@ import "./index.css";
 //     background: { backgroundColor: "#3178C6" },
 //   },
 // ];
+const skills = [
+  {
+    skill: "HTML+CSS",
+    level: "advanced",
+    color: "#2662EA",
+  },
+  {
+    skill: "JavaScript",
+    level: "advanced",
+    color: "#EFD81D",
+  },
+  {
+    skill: "Web Design",
+    level: "advanced",
+    color: "#C3DCAF",
+  },
+  {
+    skill: "Git and GitHub",
+    level: "intermediate",
+    color: "#E84F33",
+  },
+  {
+    skill: "React",
+    level: "advanced",
+    color: "#60DAFB",
+  },
+  {
+    skill: "Svelte",
+    level: "beginner",
+    color: "#FF3B00",
+  },
+];
 
 function App() {
   return (
@@ -76,20 +108,30 @@ function Intro() {
 function SkillList() {
   return (
     <div className="skill-list">
-      <Skill skill="JavaScript" emoji="💪" background="blue" />
-      <Skill skill="Python" emoji="🐍" background="yellow" />
-      <Skill skill="Java" emoji="☕" background="green" />
-      <Skill skill="C++" emoji="💻" background="purple" />
-      <Skill skill="Swift" emoji="🦅" background="red" />
+      {skills.map((skill) => (
+        <Skill skills={skill} />
+      ))}
     </div>
+
+    // <div className="skill-list">
+    //   <Skill skill="JavaScript" emoji="💪" background="blue" />
+    //   <Skill skill="Python" emoji="🐍" background="yellow" />
+    //   <Skill skill="Java" emoji="☕" background="green" />
+    //   <Skill skill="C++" emoji="💻" background="purple" />
+    //   <Skill skill="Swift" emoji="🦅" background="red" />
+    // </div>
   );
 }
 
-function Skill(props) {
+function Skill({ skills }) {
   return (
-    <div className="skill" style={{ backgroundColor: props.background }}>
-      <div>{props.skill}</div>
-      <div>{props.emoji}</div>
+    <div className="skill" style={{ backgroundColor: skills.color }}>
+      <span>{skills.skill}</span>
+      <span>
+        {skills.level === "beginner" && "👶"}
+        {skills.level === "intermediate" && "👍"}
+        {skills.level === "advanced" && "💪"}
+      </span>
     </div>
   );
 }
